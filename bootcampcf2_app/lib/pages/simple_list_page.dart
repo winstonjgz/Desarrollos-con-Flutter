@@ -9,13 +9,15 @@ class SimpleListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
-          children: List.generate(
-              100,
-              (index) => flutter.Image.network(
-                    faker.image.image(
-                      random: true,
-                    ),
-                  ))),
+        children: List.generate(
+          100,
+          (index) => flutter.Image.network(
+            faker.image.image(
+              random: true,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
-import 'package:bootcampcf2_app/pages/simple_list_page.dart';
+import 'package:bootcampcf2_app/pages/list_view_builder_page.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,8 +11,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SimpleListPage(),
+    return const MaterialApp(
+      home: ListViewBuilderPage(),
     );
   }
 }

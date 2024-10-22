@@ -9,6 +9,7 @@ class Post {
     required this.likes,
     required this.comments,
     required this.shared,
+    required this.createdAt,
   });
 
   final String id;
@@ -18,4 +19,5 @@ class Post {
   final int likes;
   final int comments;
   final int shared;
+  final DateTime createdAt;
 }
