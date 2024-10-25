@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:responsive_app/theme/theme.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
   runApp(const MainApp());
@@ -32,29 +33,35 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false, // Banner que sale a la derecha "Debug"
-      locale: _locale,
-      localizationsDelegates: const [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        AppLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('es'),
-      ],
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: MaterialTheme.lightScheme(),
-      ), //Se agrega el tema o colores a utilizar
-      darkTheme: ThemeData(
-        useMaterial3: true,
-        colorScheme: MaterialTheme.darkMediumContrastScheme(),
-      ),
-      themeMode: _themeMode,
-      home: Scaffold(
+    return ScreenUtilInit(
+      builder: (context, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner:
+              false, // Banner que sale a la derecha "Debug"
+          locale: _locale,
+          localizationsDelegates: const [
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            AppLocalizations.delegate,
+          ],
+          supportedLocales: const [
+            Locale('en'),
+            Locale('es'),
+          ],
+          theme: ThemeData(
+            useMaterial3: true,
+            colorScheme: MaterialTheme.lightScheme(),
+          ), //Se agrega el tema o colores a utilizar
+          darkTheme: ThemeData(
+            useMaterial3: true,
+            colorScheme: MaterialTheme.darkMediumContrastScheme(),
+          ),
+          themeMode: _themeMode,
+          home: child,
+        );
+      },
+      child: Scaffold(
         appBar: AppBar(
           actions: [
             Padding(
@@ -119,11 +126,27 @@ class MyApp extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(AppLocalizations.of(context)!.helloWorld),
+            Text(
+              AppLocalizations.of(context)!.helloWorld,
+              style: TextStyle(
+                color: theme.onPrimaryContainer,
+              ),
+            ),
             Container(
-              color: theme.primaryContainer,
-              height: 30,
-              width: 30,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.r),
+                color: theme.primaryContainer,
+              ),
+              height: 200.h,
+              width: 200.w,
+              alignment: Alignment.center,
+              child: Text(
+                AppLocalizations.of(context)!.quoteLan,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24.sp,
+                ),
+              ),
             ),
           ],
         ),
